@@ -3,19 +3,19 @@ pipeline {
 	agent none
       stages {
         stage('Maven Clean') {
-            agent any
+            agent { label 'master' }
           steps {
             sh 'mvn clean'
           }
         }
         stage('Maven Package'){
-            agent any
+            agent { label 'master' }
             steps {
                 sh 'mvn package'
             }
         }
         stage('Load Properties'){
-            agent any
+            agent { label 'master' }
             steps {
                 script {
                 	sh 'cat src/main/resources/application.properties'
