@@ -20,7 +20,7 @@ pipeline {
                 script {
                 	sh 'cat src/main/resources/application.properties'
                 	
-                    properties = readProperties file: 'application.properties'
+                    properties = readProperties file: 'src/main/resources/application.properties'
                     env.SERVER_PORT = properties['server.port']
                 }
             }
