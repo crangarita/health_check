@@ -29,7 +29,7 @@ pipeline {
         stage('Transfer JAR') {
             agent { label 'remote-java' } // Replace with your remote server label
             steps {
-                sshagent(['ac0b1b39-b6e7-49fb-b6a4-fbfaa327d14c']) { // Replace with your SSH key ID
+                sshagent(['3f37cc3d-9234-4297-813c-173003248230']) { // Replace with your SSH key ID
                     sh "scp target/$NAME_APP-0.0.1-SNAPSHOT.jar jenkins@192.168.3.212:/home/jenkins"
                 }
             }
