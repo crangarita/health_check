@@ -12,6 +12,7 @@ pipeline {
             agent { label 'master' }
             steps {
                 sh 'mvn package'
+                stash includes: 'target/*.jar', name: 'app-jar' // Stash the .jar file
             }
         }
         stage('Load Properties'){
@@ -31,6 +32,7 @@ pipeline {
             steps {
                 sshagent(['ac0b1b39-b6e7-49fb-b6a4-fbfaa327d14c']) { // Replace with your SSH key ID
                 	sh "ls"
+                	unstash 'app-jar' // Unstash the .jar file
                     sh "scp target/$NAME_APP-0.0.1-SNAPSHOT.jar integracion@192.168.3.212:/home/integracion/jenkins"
                 }
             }
