@@ -18,6 +18,8 @@ pipeline {
             agent any
             steps {
                 script {
+                	sh 'cat application.properties'
+                	
                     properties = readProperties file: 'application.properties'
                     env.SERVER_PORT = properties['server.port']
                 }
