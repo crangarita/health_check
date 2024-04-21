@@ -42,7 +42,7 @@ pipeline {
             steps {
                 withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                     sh 'fuser -k $SERVER_PORT/tcp || true'
-                    sh 'nohup java -jar /home/integracion/$NAME_APP-0.0.1-SNAPSHOT.jar > log-$NAME_APP.log 2>&1 &'
+                    sh 'nohup java -jar /home/integracion/jenkins/$NAME_APP-0.0.1-SNAPSHOT.jar > log-$NAME_APP.log 2>&1 &'
                 }
             }
 
