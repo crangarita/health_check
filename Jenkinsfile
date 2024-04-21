@@ -22,6 +22,7 @@ pipeline {
                 	
                     properties = readProperties file: 'src/main/resources/application.properties'
                     env.SERVER_PORT = properties['server.port']
+                    env.NAME_APP = properties['spring.application.name']
                 }
             }
         }
@@ -30,7 +31,7 @@ pipeline {
             steps {
                 withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                     sh 'fuser -k $SERVER_PORT/tcp || true'
-                    sh 'nohup java -jar target/config-0.0.1-SNAPSHOT.jar > log-greetings.log 2>&1 &'
+                    sh 'nohup java -jar target/$NAME_APP-0.0.1-SNAPSHOT.jar > log-greetings.log 2>&1 &'
                 }
             }
         }
