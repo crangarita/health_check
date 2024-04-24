@@ -42,7 +42,7 @@ pipeline {
             steps {
                 withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                     sh 'fuser -k $SERVER_PORT/tcp || true'
-                    sh 'nohup java -jar /home/integracion/projects/$NAME_APP-0.0.1-SNAPSHOT.jar > /home/integracion/projects/log-$NAME_APP.log 2>&1 &'
+                    sh 'nohup java -jar /home/integracion/projects/$NAME_APP-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod > /home/integracion/projects/log-$NAME_APP.log 2>&1 &'
                 }
             }
 
